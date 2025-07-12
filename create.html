@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <title>Создать пасту</title>
-</head>
-<body>
-  <h1>Страница создания пасты</h1>
-  <p>Здесь будет форма создания пасты.</p>
-  <a href="/">Вернуться на главную</a>
-</body>
-</html>
+<form id="pasteForm">
+  <!-- Здесь поля формы: заголовок, язык, срок действия, содержимое -->
+  <button type="submit">Создать</button>
+</form>
+
+<script>
+  const form = document.getElementById('pasteForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault(); // предотвращаем перезагрузку страницы
+    alert('Паста создана!');
+    // Здесь добавь свою логику обработки данных формы (например, отправка на сервер)
+  });
+</script>
