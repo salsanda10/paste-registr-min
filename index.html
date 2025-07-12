@@ -1,64 +1,107 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Pastebin with Registration</title>
-  <style>
-    #pasteForm { display: none; }
-  </style>
+<meta charset="UTF-8" />
+<title>Простой Пастебин с регистрацией</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #d0f0f7;
+    margin: 0; padding: 0;
+  }
+  .container {
+    max-width: 700px;
+    background: white;
+    margin: 50px auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.12);
+  }
+
+  #welcomeBlock {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  #welcomeBlock button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    font-size: 16px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  #pasteForm {
+    display: none;
+  }
+
+  #pasteForm textarea {
+    width: 100%;
+    height: 400px;
+    font-family: monospace;
+    font-size: 16px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1.8px solid #007BFF;
+    border-radius: 8px;
+    resize: vertical;
+  }
+
+  #pasteForm button {
+    margin-top: 15px;
+    padding: 10px 30px;
+    font-size: 16px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
 
-  <!-- Блок приветствия и регистрации -->
+<div class="container">
+
   <div id="welcomeBlock">
-    <p>Чтобы начать публиковать, зарегистрируйтесь</p>
+    Чтобы начать публиковать, зарегистрируйтесь
+    <br>
     <button id="registerBtn">Зарегистрироваться</button>
   </div>
 
-  <!-- Форма пасты -->
   <div id="pasteForm">
-    <textarea placeholder="Введите текст пасты"></textarea><br />
-    <button id="createPasteBtn">Создать пасту</button>
+    <textarea placeholder="Вставьте сюда текст..."></textarea>
+    <button id="publishBtn">Создать пасту</button>
   </div>
+
+</div>
 
 <script>
   const welcomeBlock = document.getElementById('welcomeBlock');
   const pasteForm = document.getElementById('pasteForm');
   const registerBtn = document.getElementById('registerBtn');
 
-  // Проверяем, зарегистрирован ли пользователь
-  function checkRegistration() {
-    return localStorage.getItem('registered') === 'true';
-  }
-
-  function showPasteForm() {
-    welcomeBlock.style.display = 'none';
-    pasteForm.style.display = 'block';
-  }
-
-  function showWelcome() {
-    welcomeBlock.style.display = 'block';
-    pasteForm.style.display = 'none';
-  }
-
-  // При загрузке страницы проверяем статус регистрации
-  window.onload = () => {
-    if (checkRegistration()) {
-      showPasteForm();
+  function toggleView() {
+    const registered = localStorage.getItem('registered') === 'true';
+    if (registered) {
+      welcomeBlock.style.display = 'none';
+      pasteForm.style.display = 'block';
     } else {
-      showWelcome();
+      welcomeBlock.style.display = 'block';
+      pasteForm.style.display = 'none';
     }
-  };
+  }
 
-  // Обработка нажатия кнопки "Зарегистрироваться"
-  registerBtn.onclick = () => {
-    // Тут должен быть код регистрации через форму, API, и т.п.
-    // Для упрощения сейчас просто ставим флаг в localStorage:
+  registerBtn.addEventListener('click', () => {
     localStorage.setItem('registered', 'true');
+    toggleView();
+  });
 
-    // Показываем форму пасты
-    showPasteForm();
-  };
+  window.onload = toggleView;
 </script>
 
 </body>
