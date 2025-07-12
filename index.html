@@ -7,7 +7,27 @@
 </head>
 <body>
   <h1>Добро пожаловать в мой пастебин</h1>
-  <textarea placeholder="Вставь сюда текст"></textarea>
+
+  <!-- Форма регистрации -->
+  <form id="registerForm" style="margin-bottom: 20px;">
+    <label for="email">Введите Email для регистрации:</label><br />
+    <input type="email" id="email" required placeholder="example@mail.com" style="width: 100%; padding: 8px; margin-top: 6px;" />
+    <button type="submit" style="margin-top: 10px;">Зарегистрироваться</button>
+  </form>
+
+  <!-- Форма создания пасты (скрыта до регистрации) -->
+  <form id="pasteForm" style="display:none; margin-bottom: 20px;">
+    <label for="pasteInput">Введите текст пасты:</label><br />
+    <textarea id="pasteInput" rows="10" placeholder="Вставь сюда текст" style="width: 100%; padding: 8px;"></textarea><br />
+    <button type="submit" style="margin-top: 10px;">Создать пасту</button>
+  </form>
+
+  <!-- Блок с ссылкой на пасту (скрыт пока нет ссылки) -->
+  <div id="pasteLinkBox" style="display:none;">
+    <label>Ваша ссылка на пасту:</label><br />
+    <input type="text" id="pasteLink" readonly onclick="this.select();" style="width: 100%; padding: 8px;" />
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
