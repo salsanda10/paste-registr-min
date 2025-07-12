@@ -7,7 +7,7 @@
   body {
     font-family: Arial, sans-serif;
     background: #f0f6fc;
-    margin: 20px; /* меньше отступ сверху */
+    margin: 20px;
   }
 
   header {
@@ -64,7 +64,6 @@
     box-sizing: border-box;
   }
 
-  /* Контейнер для Текст + Просмотр */
   .text-preview-container {
     display: flex;
     gap: 15px;
@@ -84,7 +83,7 @@
 
   textarea {
     width: 100%;
-    height: 360px; /* чуть короче */
+    height: 360px;
     padding: 12px 14px;
     font-family: monospace;
     font-size: 16px;
@@ -94,7 +93,6 @@
     box-sizing: border-box;
   }
 
-  /* Стили превью */
   #preview {
     background: #fff;
     border: 1.5px solid #007BFF;
@@ -103,14 +101,12 @@
     padding: 10px;
     overflow: auto;
     font-family: monospace;
-    white-space: pre-wrap; /* переносы строк */
+    white-space: pre-wrap;
   }
 
   .form-footer {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* кнопка слева */
     margin-top: 15px;
+    /* убираем flex, чтобы кнопка шла просто под формой */
   }
 
   .form-footer button {
@@ -189,7 +185,6 @@
   const content = document.getElementById('content');
   const preview = document.getElementById('preview');
 
-  // Обновляем превью при вводе
   content.addEventListener('input', () => {
     preview.textContent = content.value;
   });
@@ -197,7 +192,7 @@
   const form = document.getElementById('pasteForm');
   form.addEventListener('submit', e => {
     e.preventDefault();
-    alert('Паста создана (здесь будет твой функционал)');
+    alert('Паста создана!');
   });
 </script>
 
