@@ -107,7 +107,9 @@
 <body>
 
 <header>
-  <div class="logo">MyPaste</div>
+  <div class="logo">
+    <img src="path/to/your-logo.png" alt="MyPaste Logo" style="height: 40px;">
+  </div>
   <nav>
     <a href="#">Создать</a>
     <a href="#">О сайте</a>
@@ -118,7 +120,7 @@
   <div class="form-row">
     <div>
       <label for="title">Заголовок</label>
-      <input type="text" id="title" name="title" placeholder="Заголовок пасты" />
+      <input type="text" id="title" name="title" placeholder="Текст" />
     </div>
     <div>
       <label for="language">Язык</label>
@@ -137,16 +139,14 @@
         <option value="1day">1 день</option>
         <option value="1week">1 неделя</option>
         <option value="1month">1 месяц</option>
+        <option value="1month">1 год</option>
       </select>
     </div>
   </div>
 
-  <textarea id="content" name="content" placeholder="Введите текст пасты здесь..."></textarea>
+  <textarea id="content" name="content" placeholder="Добавить материал"></textarea>
 
   <div class="form-footer">
-    <label>
-      <input type="checkbox" name="private" /> Личная заметка (не показывать в списке)
-    </label>
     <button type="submit">Создать</button>
   </div>
 </form>
