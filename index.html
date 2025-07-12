@@ -2,106 +2,163 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<title>Простой Пастебин с регистрацией</title>
+<title>Мой пастебин</title>
 <style>
   body {
     font-family: Arial, sans-serif;
-    background: #d0f0f7;
-    margin: 0; padding: 0;
-  }
-  .container {
-    max-width: 700px;
-    background: white;
-    margin: 50px auto;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.12);
+    background: #f0f6fc;
+    margin: 30px;
   }
 
-  #welcomeBlock {
-    font-size: 18px;
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 20px;
-    text-align: center;
   }
 
-  #welcomeBlock button {
-    margin-top: 15px;
-    padding: 10px 25px;
-    font-size: 16px;
-    background: #007BFF;
-    color: white;
-    border: none;
+  header .logo {
+    font-weight: bold;
+    font-size: 22px;
+    color: #007BFF;
+  }
+
+  header nav a {
+    margin-left: 15px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  form {
+    background: white;
+    padding: 20px;
     border-radius: 8px;
-    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: auto;
   }
 
-  #pasteForm {
-    display: none;
+  .form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
   }
 
-  #pasteForm textarea {
+  .form-row > div {
+    flex: 1;
+  }
+
+  label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"], select {
     width: 100%;
-    height: 400px;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 1.5px solid #007BFF;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    width: 100%;
+    height: 250px;
+    padding: 12px 14px;
     font-family: monospace;
     font-size: 16px;
-    padding: 15px;
-    box-sizing: border-box;
-    border: 1.8px solid #007BFF;
+    border: 1.5px solid #007BFF;
     border-radius: 8px;
     resize: vertical;
+    box-sizing: border-box;
   }
 
-  #pasteForm button {
+  .form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 15px;
-    padding: 10px 30px;
-    font-size: 16px;
+  }
+
+  .form-footer label {
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  button {
     background: #007BFF;
     color: white;
+    font-size: 16px;
+    padding: 10px 28px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background: #0056b3;
   }
 </style>
 </head>
 <body>
 
-<div class="container">
+<header>
+  <div class="logo">MyPaste</div>
+  <nav>
+    <a href="#">Создать</a>
+    <a href="#">О сайте</a>
+  </nav>
+</header>
 
-  <div id="welcomeBlock">
-    Чтобы начать публиковать, зарегистрируйтесь
-    <br>
-    <button id="registerBtn">Зарегистрироваться</button>
+<form id="pasteForm">
+  <div class="form-row">
+    <div>
+      <label for="title">Заголовок</label>
+      <input type="text" id="title" name="title" placeholder="Заголовок пасты" />
+    </div>
+    <div>
+      <label for="language">Язык</label>
+      <select id="language" name="language">
+        <option value="plaintext">Plain Text</option>
+        <option value="markdown">Markdown</option>
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <!-- Добавь другие языки -->
+      </select>
+    </div>
+    <div>
+      <label for="expire">Срок действия</label>
+      <select id="expire" name="expire">
+        <option value="never">Навсегда</option>
+        <option value="1day">1 день</option>
+        <option value="1week">1 неделя</option>
+        <option value="1month">1 месяц</option>
+      </select>
+    </div>
   </div>
 
-  <div id="pasteForm">
-    <textarea placeholder="Вставьте сюда текст..."></textarea>
-    <button id="publishBtn">Создать пасту</button>
-  </div>
+  <textarea id="content" name="content" placeholder="Введите текст пасты здесь..."></textarea>
 
-</div>
+  <div class="form-footer">
+    <label>
+      <input type="checkbox" name="private" /> Личная заметка (не показывать в списке)
+    </label>
+    <button type="submit">Создать</button>
+  </div>
+</form>
 
 <script>
-  const welcomeBlock = document.getElementById('welcomeBlock');
-  const pasteForm = document.getElementById('pasteForm');
-  const registerBtn = document.getElementById('registerBtn');
+  const form = document.getElementById('pasteForm');
 
-  function toggleView() {
-    const registered = localStorage.getItem('registered') === 'true';
-    if (registered) {
-      welcomeBlock.style.display = 'none';
-      pasteForm.style.display = 'block';
-    } else {
-      welcomeBlock.style.display = 'block';
-      pasteForm.style.display = 'none';
-    }
-  }
-
-  registerBtn.addEventListener('click', () => {
-    localStorage.setItem('registered', 'true');
-    toggleView();
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    // Здесь будет логика создания пасты
+    alert('Паста создана (здесь будет твой функционал)');
   });
-
-  window.onload = toggleView;
 </script>
 
 </body>
