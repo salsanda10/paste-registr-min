@@ -2,9 +2,110 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<title>Создать пасту</title>
+<title>Создать пасту — MyPaste</title>
 <style>
-  /* сюда скопируй стили формы из index.html */
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f6fc;
+    margin: 20px;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  header .logo {
+    font-weight: bold;
+    font-size: 22px;
+    color: #007BFF;
+  }
+  header nav a {
+    margin-left: 15px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: auto;
+  }
+  .form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+  }
+  .form-row > div {
+    flex: 1;
+  }
+  label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+  input[type="text"], select {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 1.5px solid #007BFF;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  .text-preview-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  .text-block, .preview-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .text-block label, .preview-block label {
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  textarea {
+    width: 100%;
+    height: 350px;
+    padding: 12px 14px;
+    font-family: monospace;
+    font-size: 16px;
+    border: 1.5px solid #007BFF;
+    border-radius: 8px;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  #preview {
+    background: #fff;
+    border: 1.5px solid #007BFF;
+    border-radius: 8px;
+    height: 350px;
+    padding: 10px;
+    overflow: auto;
+    font-family: monospace;
+    white-space: pre-wrap;
+  }
+  .form-footer {
+    margin-top: 15px;
+  }
+  .form-footer button {
+    background: #007BFF;
+    color: white;
+    font-size: 16px;
+    padding: 10px 28px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .form-footer button:hover {
+    background: #0056b3;
+  }
 </style>
 </head>
 <body>
@@ -20,11 +121,62 @@
 </header>
 
 <form id="pasteForm">
-  <!-- здесь твоя форма создания пасты (заголовок, язык, срок, текст и т.п.) -->
+  <div class="form-row">
+    <div>
+      <label for="title">Заголовок</label>
+      <input type="text" id="title" name="title" placeholder="Текст" />
+    </div>
+    <div>
+      <label for="language">Язык</label>
+      <select id="language" name="language">
+        <option value="plaintext">Plain Text</option>
+        <option value="markdown">Markdown</option>
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+      </select>
+    </div>
+    <div>
+      <label for="expire">Срок действия</label>
+      <select id="expire" name="expire">
+        <option value="never">Навсегда</option>
+        <option value="1day">1 день</option>
+        <option value="1week">1 неделя</option>
+        <option value="1month">1 месяц</option>
+        <option value="1year">1 год</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="text-preview-container">
+    <div class="text-block">
+      <label for="content">Текст</label>
+      <textarea id="content" name="content" placeholder="Добавить материал"></textarea>
+    </div>
+
+    <div class="preview-block">
+      <label>Просмотр</label>
+      <div id="preview"></div>
+    </div>
+  </div>
+
+  <div class="form-footer">
+    <button type="submit">Создать</button>
+  </div>
 </form>
 
 <script>
-  // твой скрипт для формы
+  const content = document.getElementById('content');
+  const preview = document.getElementById('preview');
+
+  content.addEventListener('input', () => {
+    preview.textContent = content.value;
+  });
+
+  const form = document.getElementById('pasteForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Паста создана!');
+  });
 </script>
 
 </body>
