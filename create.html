@@ -164,18 +164,10 @@
 </form>
 
 <script>
-  const content = document.getElementById('content');
-  const preview = document.getElementById('preview');
-
-  content.addEventListener('input', () => {
-    preview.textContent = content.value;
-  });
-
-  const form = document.getElementById('pasteForm');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Паста создана!');
-  });
+  function updatePreview() {
+    const input = document.getElementById("content").value;
+    document.getElementById("preview").value = input;
+  }
 </script>
 
 </body>
