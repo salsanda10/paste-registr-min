@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Авторизация на Firebase</title>
+</head>
+<body>
+  <h2>Регистрация</h2>
+  <input type="email" id="register-email" placeholder="Email">
+  <input type="password" id="register-password" placeholder="Пароль">
+  <button onclick="register()">Зарегистрироваться</button>
+
+  <h2>Вход</h2>
+  <input type="email" id="login-email" placeholder="Email">
+  <input type="password" id="login-password" placeholder="Пароль">
+  <button onclick="login()">Войти</button>
+
+  <h2>Выход</h2>
+  <button onclick="logout()">Выйти</button>
+
+  <p id="message"></p>
+
+  <!-- Firebase App (обязательно) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <!-- Firebase Authentication -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+  <script>
+    // Твоя конфигурация Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVRVBhAkr6hB5ayM_-ti6hXUbCkE5Xays",
+      authDomain: "paste-registr-min.firebaseapp.com",
+      projectId: "paste-registr-min",
+      storageBucket: "paste-registr-min.firebasestorage.app",
+      messagingSenderId: "296115081813",
+      appId: "1:296115081813:web:6eeb16798fa5ff1eab3adc"
+    };
+
+    // Инициализация Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Регистрация
+    function register() {
+      const email = document.getElementById("register-email").value;
+      const password = document.getElementById("register-password").value;
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          document.getElementById("message").textContent = "Регистрация прошла успешно!";
+        })
+        .catch((error) => {
+          document.getElementById("message").textContent = "Ошибка: " + error.message;
+        });
+    }
+
+    // Вход
+    function login() {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          document.getElementById("message").textContent = "Вход выполнен!";
+        })
+        .catch((error) => {
+          document.getElementById("message").textContent = "Ошибка входа: " + error.message;
+        });
+    }
+
+    // Выход
+    function logout() {
+      auth.signOut().then(() => {
+        document.getElementById("message").textContent = "Вы вышли из аккаунта.";
+      });
+    }
+  </script>
+</body>
+</html>
