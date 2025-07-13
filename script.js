@@ -51,10 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 <script>
-  const content = document.getElementById('content');
-  const preview = document.getElementById('preview');
+  function updatePreview() {
+    const content = document.getElementById('content').value;
+    const preview = document.getElementById('preview');
+    preview.value = content;
+  }
 
-  content.addEventListener('input', () => {
-    preview.textContent = content.value;
+  document.addEventListener('DOMContentLoaded', () => {
+    updatePreview();
   });
+
+  function savePaste() {
+    const content = document.getElementById('content').value.trim();
+    if (!content) {
+      alert('Пожалуйста, введите текст пасты перед сохранением.');
+      return;
+    }
+    // Тут добавить свою логику сохранения, например, запрос на сервер
+    alert('Паста создана! (логика сохранения пока не реализована)');
+  }
 </script>
