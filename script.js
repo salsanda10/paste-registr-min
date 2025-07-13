@@ -49,3 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 });
+
+<script>
+  const content = document.getElementById('content');
+  const preview = document.getElementById('preview');
+
+  content.addEventListener('input', () => {
+    preview.textContent = content.value;
+  });
+</script>
