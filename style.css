@@ -3,9 +3,46 @@ body {
   background-color: #f0f8ff;
   margin: 40px;
 }
-textarea {
+
+/* Контейнер для двух колонок: Текст и Просмотр */
+.text-preview-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Каждая колонка */
+.text-block,
+.preview-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Поле Текст */
+#content {
   width: 100%;
   height: 400px;
   font-family: monospace;
   font-size: 16px;
+  padding: 10px;
+  border: 1.5px solid #007BFF;
+  border-radius: 8px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Поле Просмотр */
+#preview {
+  width: 100%;
+  height: 400px;
+  font-family: monospace;
+  font-size: 16px;
+  padding: 10px;
+  border: 1.5px solid #007BFF;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: white;
+  overflow: auto;
+  white-space: pre-wrap;
 }
