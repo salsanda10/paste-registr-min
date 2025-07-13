@@ -4,27 +4,86 @@
 <meta charset="UTF-8" />
 <title>MyPaste — Главная</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f6fc;
-    margin: 30px;
-  }
-  header {
+  /* Верхний блок */
+  .top-controls {
+    max-width: 900px;
+    margin: 0 auto 20px auto;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
   }
-  header .logo {
+  .top-controls label {
     font-weight: bold;
-    font-size: 22px;
-    color: #007BFF;
   }
-  header nav a {
-    margin-left: 15px;
-    color: #007BFF;
-    text-decoration: none;
-    font-weight: 600;
+  select, input[type="text"] {
+    padding: 6px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  /* Основной блок */
+  .container {
+    display: flex;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  textarea {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    box-sizing: border-box;
+    font-family: Consolas, monospace;
+    background: #fff;
+  }
+  #preview {
+    background: #f9f9f9;
+    color: #444;
+  }
+
+  /* Кнопка */
+  .button-wrapper {
+    max-width: 900px;
+    margin: 20px auto 0 auto;
+    text-align: left;
+  }
+  button {
+    padding: 12px 25px;
+    font-size: 18px;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #005fa3;
+  }
+
+  /* Адаптив */
+  @media (max-width: 760px) {
+    .container {
+      flex-direction: column;
+    }
+    .button-wrapper {
+      text-align: center;
+    }
   }
 </style>
 </head>
