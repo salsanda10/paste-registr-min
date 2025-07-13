@@ -11,13 +11,40 @@
       background: #fafafa;
       color: #333;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
+
+    /* Верхний блок с выбором языка и остальным */
+    .top-controls {
+      max-width: 900px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .top-controls label {
+      font-weight: bold;
+    }
+    select, input[type="text"] {
+      padding: 6px 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    /* Основной контейнер с текстом и превью */
+    .container {
+      display: flex;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
     label {
       font-weight: bold;
-      display: block;
       margin-bottom: 8px;
     }
     textarea {
@@ -36,20 +63,15 @@
       background: #f9f9f9;
       color: #444;
     }
-    .container {
-      display: flex;
-      gap: 30px;
+
+    /* Кнопка сохранить/создать */
+    .button-wrapper {
       max-width: 900px;
-      margin: 0 auto;
-    }
-    .block {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+      margin: 20px auto 0 auto;
+      text-align: left;
     }
     button {
-      margin-top: 20px;
-      padding: 12px 20px;
+      padding: 12px 25px;
       font-size: 18px;
       background: #007acc;
       color: white;
@@ -57,17 +79,41 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background 0.3s ease;
-      align-self: flex-start;
     }
     button:hover {
       background: #005fa3;
+    }
+
+    /* Адаптив */
+    @media (max-width: 760px) {
+      .container {
+        flex-direction: column;
+      }
+      .button-wrapper {
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Создать новую пасту</h1>
+  <!-- Верхний блок, сюда вставь свои элементы выбора языка, названия и пр -->
+  <div class="top-controls">
+    <label for="language">Выберите язык:</label>
+    <select id="language" name="language">
+      <option value="plaintext">Plain Text</option>
+      <option value="markdown">Markdown</option>
+      <option value="yaml">YAML</option>
+      <option value="json">JSON</option>
+      <!-- Добавь нужные языки -->
+    </select>
 
+    <!-- Пример текстового поля или другого элемента сверху -->
+    <label for="title">Заголовок:</label>
+    <input type="text" id="title" name="title" placeholder="Введите заголовок" />
+  </div>
+
+  <!-- Основные поля ввода и превью -->
   <div class="container">
     <div class="block">
       <label for="content">Текст пасты</label>
@@ -79,7 +125,9 @@
     </div>
   </div>
 
-  <button type="button" onclick="savePaste()">Сохранить пасту</button>
+  <div class="button-wrapper">
+    <button type="button" onclick="savePaste()">Создать пасту</button>
+  </div>
 
   <script>
     function updatePreview() {
@@ -98,11 +146,10 @@
         alert('Пожалуйста, введите текст пасты перед сохранением.');
         return;
       }
-      // Здесь можно добавить логику сохранения пасты, например, отправку на сервер
-      alert('Паста сохранена!\n\n(Логика сохранения пока не реализована)');
+      // Здесь добавить реальную логику сохранения
+      alert('Паста создана! (Реализация сохранения в разработке)');
     }
   </script>
 
 </body>
 </html>
-
