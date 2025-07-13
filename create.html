@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Создать пасту</title>
+  <title>Создать</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -49,11 +49,11 @@
     }
     <div class="container">
   <div class="block">
-    <label for="content">Текст пасты</label>
-    <textarea id="content" name="content" placeholder="Введите или вставьте текст пасты..." oninput="updatePreview()"></textarea>
+    <label for="content">Текст</label>
+    <textarea id="content" name="content" placeholder="Введите или вставьте текст" oninput="updatePreview()"></textarea>
   </div>
   <div class="block">
-    <label for="preview">Предварительный просмотр</label>
+    <label for="preview">Просмотр</label>
     <textarea id="preview" readonly></textarea>
   </div>
 </div>
@@ -112,18 +112,18 @@
   <!-- Основные поля ввода и превью -->
   <div class="container">
     <div class="block">
-      <label for="content">Текст пасты</label>
-      <textarea id="content" name="content" placeholder="Введите или вставьте текст пасты..." oninput="updatePreview()"></textarea>
+      <label for="content">Текст</label>
+      <textarea id="content" name="content" placeholder="Введите или вставьте текст" oninput="updatePreview()"></textarea>
     </div>
     <div class="block">
-      <label for="preview">Предварительный просмотр</label>
+      <label for="preview">Просмотр</label>
       <textarea id="preview" readonly></textarea>
     </div>
   </div>
 
   <div class="button-wrapper">
-    <button type="button" onclick="savePaste()">Создать пасту</button>
-  </div>
+  <button type="button" onclick="savePaste()">Создать</button>
+</div>
 
   <script>
     function updatePreview() {
@@ -139,11 +139,11 @@
     function savePaste() {
       const content = document.getElementById('content').value.trim();
       if (!content) {
-        alert('Пожалуйста, введите текст пасты перед сохранением.');
+        alert('Пожалуйста, введите текст перед сохранением.');
         return;
       }
       // Здесь добавить реальную логику сохранения
-      alert('Паста создана! (Реализация сохранения в разработке)');
+      alert('Создано! (Реализация сохранения в разработке)');
     }
   </script>
 
